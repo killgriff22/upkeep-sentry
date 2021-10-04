@@ -19,12 +19,17 @@ except:
   from colorama import Fore,init,Back
 init()
 from time import sleep
+def checkforupdates():
+  if get("https://raw.githubusercontent.com/killgriff22/upkeep-sentry/master/main.py").text() != open("main.py","r").read():
+    open("update.py","w").write("import requests\nopen(\"main.py\",\"w\").write(requests.get(\"https://raw.githubusercontent.com/killgriff22/upkeep-sentry/master/main.py\").text())\nimport os\nos.system(\"python3 main.py\")")
+    sys("python update.py")
 amt = int(input(Fore.CYAN+Back.BLACK+"please write the amount of servers that need to be upkept\n"))
 iparr = []
 for x in range(amt):
   iparr.append(input(Fore.CYAN+Back.BLACK+"please input the ip or domain to be upkept\n"))
   print(Fore.RESET,Back.RESET)
 while True:
+  checkforupdates()
   sleep(3)
   for i in range(len(iparr)):
     ip = iparr[i]
